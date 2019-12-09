@@ -32,7 +32,7 @@ jobs:
 
       - run: |
           sleep 2
-          TESTFILES=$(circleci tests glob "features/*/*/**/*.feature" | circleci tests split --split-by=timings --timings-type=classname)
+          TESTFILES=$(circleci tests glob "features/*.feature" | circleci tests split --split-by=timings --timings-type=classname)
           yarn run test-chrome --specs=$(ls -m $TESTFILES | tr -d [:space:])
 
       #store artifacts
@@ -79,7 +79,7 @@ jobs:
 
       - run: |
           sleep 5
-          TESTFILES=$(circleci tests glob "features/*/*/**/*.feature" | circleci tests split --split-by=timings --timings-type=classname)
+          TESTFILES=$(circleci tests glob "features/*.feature" | circleci tests split --split-by=timings --timings-type=classname)
           yarn run test-firefox --specs=$(ls -m $TESTFILES | tr -d [:space:])
 
       #store artifacts
