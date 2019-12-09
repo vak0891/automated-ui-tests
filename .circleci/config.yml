@@ -1,0 +1,107 @@
+version: 2
+jobs:
+  test-chrome:
+    docker:
+      - image: circleci/node:10-browsers
+    parallelism: 3
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+
+      - run:
+          name: Install
+          command: yarn install
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+      - run:
+          name: Selenium
+          command: |
+            yarn run webdriver-update
+      - run:
+          name: Selenium
+          command: |
+            yarn run webdriver-start
+          background: true
+
+      - run: |
+          sleep 2
+          TESTFILES=$(circleci tests glob "features/*/*/**/*.feature" | circleci tests split --split-by=timings --timings-type=classname)
+          yarn run test-chrome --specs=$(ls -m $TESTFILES | tr -d [:space:])
+
+      #store artifacts
+      - store_artifacts:
+          name: Uploading reports
+          path: ./reports
+      
+      - store_test_results:
+          path: ./reports
+
+  test-firefox:
+    docker:
+      - image: circleci/node:10-browsers
+    parallelism: 3
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+
+      - run:
+          name: Install
+          command: yarn install
+
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+      - run:
+          name: Selenium
+          command: |
+            yarn run webdriver-update
+      
+      - run:
+          name: Selenium
+          command: |
+            yarn run webdriver-start
+          background: true
+      
+      - run: |
+          export MOZ_FORCE_DISABLE_E10S=1
+
+      - run: |
+          sleep 5
+          TESTFILES=$(circleci tests glob "features/*/*/**/*.feature" | circleci tests split --split-by=timings --timings-type=classname)
+          yarn run test-firefox --specs=$(ls -m $TESTFILES | tr -d [:space:])
+
+      #store artifacts
+      - store_artifacts:
+          name: Uploading reports
+          path: ./reports
+
+      - store_test_results:
+          path: ./reports
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - test-chrome
+  schedule-workflow:
+    triggers:
+    - schedule:
+        cron: 0 * * * *
+        filters:
+          branches:
+            only:
+            - master
+    jobs:
+    - test-chrome
