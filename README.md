@@ -1,4 +1,4 @@
-# career Builder UI Test Automation
+# Career Builder UI Test Automation
 
 >This guide assumes you have google chrome and firefox installed.
 
