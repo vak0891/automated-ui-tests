@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test-chrome": "protractor-flake --parser cucumber --node-bin node --max-attempts=5 -- config/config-chrome.js",
+    "test": "protractor-flake --parser cucumber --node-bin node --max-attempts=5 -- config/config-chrome.js",
     "test-firefox": "protractor-flake --parser cucumber --node-bin node --max-attempts=5 -- config/config-firefox.js",
     "test-multi": "protractor-flake --parser cucumber --node-bin node --max-attempts=5 -- config/multiConfig.js",
     "browserstack": "protractor-flake --parser cucumber --node-bin node --max-attempts=5 -- config/browserstack",
