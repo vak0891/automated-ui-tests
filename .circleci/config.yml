@@ -32,8 +32,7 @@ jobs:
 
       - run: |
           sleep 2
-          TESTFILES=$(circleci tests glob "features/*.feature" | circleci tests split --split-by=timings --timings-type=classname)
-          yarn run test-chrome --specs=$(ls -m $TESTFILES | tr -d [:space:])
+          yarn run test-chrome
 
       #store artifacts
       - store_artifacts:
