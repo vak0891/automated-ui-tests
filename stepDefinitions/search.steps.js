@@ -36,6 +36,8 @@ Then(/^I see that the "(.*?)" jobs are listed in the left panel$/, async job_tit
 });
 
 Then(/^I see that the salary details are listed in the right panel$/, async () => {
+  await search.searchDataOption.click();
+  await browser.wait(EC.visibilityOf(search.companySalaryText), 10000);
   await utils.checkTextContent(search.companySalaryText, 'Avg. Yearly Salary');
   await expect(search.companySalaryValue.getAttribute('value').toString()).to.not.be.null;
 });

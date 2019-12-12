@@ -89,7 +89,7 @@ class Reporter {
       return res.body.toString();
     }
 
-    async function uploadResults() {
+    /*async function uploadResults() {
       const requestBody = await readFile('./reports/json/cucumber_report.json', 'utf8');
       const jiraEndpoint = '/api/v1/import/execution/cucumber';
       const authentication = await getToken();
@@ -101,7 +101,7 @@ class Reporter {
       );
       logger.info(res.text.toString());
       return res.text.toString();
-    }
+    }*/
     // await uploadResults();
   }
 }

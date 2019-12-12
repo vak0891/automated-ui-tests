@@ -2,7 +2,7 @@ import { element } from 'protractor';
 
 export default class Upload {
   constructor() {
-    this.uploadResumeHomeButton = $('#cv-upload-link');
+    this.uploadResumeHomeButton = element(by.xpath("//a[@data-gtm='homepage|add-resume-btn']"));
     this.addResume = $('#resume_file');
     this.saveResume = $('#save_resume');
     this.resumeTitle = $('#resume_title');

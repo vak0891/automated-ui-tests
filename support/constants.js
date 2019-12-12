@@ -2,7 +2,7 @@ export default class Constants {
   constructor() {
     // Links
     this.cbHomePage = 'https://www.careerbuilder.com';
-    this.cbNewResumePage = 'https://www.careerbuilder.com/advice';
+    this.cbNewResumePage = 'https://www.careerbuilder.com/resumes/new';
     this.cbcareerAdvicePage = 'https://www.careerbuilder.com/advice';
     this.cbArticleLink =
       'https://www.careerbuilder.com/advice/10-highpaying-health-care-jobs-besides-doctors';

@@ -9,9 +9,9 @@ exports.config = {
 
   capabilities: {
     browserName: 'chrome',
-    chromeOptions: { args: ['--headless', '--disable-gpu', '--window-size=1600,980'] },
+    /*chromeOptions: { args: ['--headless', '--disable-gpu', '--window-size=1600,980'] },
     maxInstances: 10,
-    restartBrowserBetweenTests: true,
+    restartBrowserBetweenTests: true,*/
   },
 
   framework: 'custom',

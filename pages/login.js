@@ -6,6 +6,6 @@ export default class SignInPage {
     this.signInButton = $('#btnsigninemp');
     this.menuButton = element(by.xpath("//span[contains(.,'Vaishnavi')]"));
     this.signOutButton = $('#logout-link');
-    this.errorMessage = element(by.xpath('\/\/*[@id=\"MXMessageBoxError\"]/tbody/tr/td[2]/span')); //$('#label-login-password-input-error');
+    this.errorMessage = $('#MXMessageBoxError');
   }
 }
